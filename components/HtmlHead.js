@@ -31,6 +31,10 @@ const Head = props => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+
+    <link href="/static/css/vendor/foundation.min.css?v=6.2.4" rel="stylesheet" />
+    <link href="/static/css/bundle.css" rel="stylesheet" />
+
   </NextHead>
 )
 
