@@ -45,5 +45,10 @@
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-manifest-plugin": "^2.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run pre-push-message && npm run test"
+    }
   }
 }
