@@ -1,14 +1,49 @@
 {
-  "name": "create-next-example-app",
+  "name": "sttm-nextjs",
   "scripts": {
+    "pre-push-message": "echo \"Before your push gets submitted to remote, we'll like to run some tests to avoid wasting your, reviewers' and CI's time. Thank you for being patient!\"",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "npm-run-all test:*",
+    "test:lint": "run-p test:lint:*",
+    "test:lint:css": "stylelint \"scss/*.scss\" --syntax scss",
+    "test:lint:js": "run-p test:lint:js:*",
+    "test:lint:js:eslint": "eslint pages/",
+    "test:lint:js:ignore:tslint": "tslint --project . -t stylish",
+    "test:unit": "NODE_ENV=test jest --no-cache --config jest/config.js"
   },
   "dependencies": {
     "next": "^9.0.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "@sttm/banidb": "^2.2.0"
+    "react-dom": "^16.8.6"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.3",
+    "@types/react": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "eslint": "^6.3.0",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
+    "npm-run-all": "^4.1.5",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-order": "^3.1.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-manifest-plugin": "^2.0.4"
   }
 }

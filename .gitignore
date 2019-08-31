@@ -4,7 +4,7 @@
 /node_modules
 
 # testing
-/coverage
+jest/coverage/
 
 # production
 /build
@@ -17,6 +17,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
+*.swp
+*.map
+.idea/
 
 # Environment Variables
 .env
