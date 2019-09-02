@@ -13,7 +13,8 @@ const Error = () => {
             These are not the Singhs you are looking for.
           </div>
           <div id="error-desc">
-            The requested URL "{router.asPath}" was not found on this server.
+            The requested URL &quot;{router.asPath}&quot; was not found on this
+            server.
           </div>
         </div>
         <div>
