@@ -1,13 +1,8 @@
-import Layout from '../components/Layout'
+import React from 'react';
+import Layout from '../components/Layout';
 
 const SundarGutka = () => {
+  return <Layout>...</Layout>;
+};
 
-  return (
-    <Layout>
-      ...
-    </Layout>
-  )
-
-}
-
-export default SundarGutka
+export default SundarGutka;

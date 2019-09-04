@@ -1,21 +1,21 @@
-import Layout from '../components/Layout'
-import GurmukhiKeyboard from '../components/GurmukhiKeyboard'
-import Logo from '../components/Icons/Logo'
-import CrossIcon from '../components/Icons/Times'
-import KeyboardIcon from '../components/Icons/Keyboard'
-import SearchIcon from '../components/Icons/Search'
+import React from 'react';
+import Layout from '../components/Layout';
+// import GurmukhiKeyboard from '../components/GurmukhiKeyboard';
+import Logo from '../components/Icons/Logo';
+import CrossIcon from '../components/Icons/Times';
+import KeyboardIcon from '../components/Icons/Keyboard';
+import SearchIcon from '../components/Icons/Search';
 
 const Home = () => {
-
-  const onSubmit = ({ handleSubmit, ...data }) => e => {
-    e.preventDefault();
-    handleSubmit();
-    this.props.history.push(toSearchURL(data));
-  };
+  // const onSubmit = ({ handleSubmit, ...data }) => e => {
+  //   e.preventDefault();
+  //   handleSubmit();
+  //   this.props.history.push(toSearchURL(data));
+  // };
 
   // TODO:
   const displayGurmukhiKeyboard = true;
-  const setGurmukhiKeyboardVisibilityAs = () => {}
+  const setGurmukhiKeyboardVisibilityAs = () => {};
 
   return (
     <Layout homepage={true}>
@@ -84,7 +84,6 @@ const Home = () => {
               /> */}
             </div>
 
-
             <div className="search-options">
               <div className="search-option">
                 <select
@@ -115,14 +114,12 @@ const Home = () => {
               </div>
             </div>
 
-
             {/* <SehajPaathLink /> */}
           </form>
         </div>
       </div>
     </Layout>
-  )
+  );
+};
 
-}
-
-export default Home
+export default Home;
