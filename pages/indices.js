@@ -44,7 +44,7 @@ const SomeTable = () => {
   return (
     <>
       {Object.entries(raagIndices).map(
-        ([key, { name: granthName, source, indices }]) => (
+        ([key, { name: granthName, /*source,*/ indices }]) => (
           <React.Fragment key={key}>
             <h3 id={granthName}> {granthName}</h3>
             <table>
@@ -55,7 +55,8 @@ const SomeTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {indices.map(({ name, pages: [from, to], highlight }) => (
+                {/* {indices.map(({ name, pages: [from, to], highlight }) => ( */}
+                {indices.map(({ name, pages: [from, to] }) => (
                   <tr id={`${sanitizeHash(granthName, name)}`} key={name}>
                     <td>{name}</td>
                     <td>
