@@ -1,19 +1,12 @@
-# Next.js Example
+# Next.js version of https://sikhitothemax.org
 
-This directory is a brief example of a [Next.js](https://nextjs.org) app that can be deployed to ZEIT Now with zero configuration.
+This is a work in progress for porting https://sikhitothemax.org to NextJS. Contributions welcome.
 
-## How we created this example
-
-To get started with Next.js on Now, you can use [npm create](https://www.npmjs.com/package/create-next-app) to initialize the project:
+## How to setup dev environment
 
 ```shell
-$ npm create next-app my-app
-```
-
-## Deploying this Example
-
-Once initialized, you can deploy the Next.js example with just a single command:
-
-```shell
-$ now
+$ git clone git@github.com:plug-n-play/sttm-nextjs.git
+$ cd sttm-nextjs
+$ npm install
+$ npm run dev
 ```
