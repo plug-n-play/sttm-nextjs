@@ -19,7 +19,7 @@ const Error = () => {
         </div>
         <div>
           <img
-            src="/static/assets/images/404.png"
+            src="/assets/images/404.png"
             alt="Image of Sikh Man smiling at you"
           />
         </div>
