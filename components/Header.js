@@ -270,7 +270,7 @@ const Header = props => {
                 </li>
                 <li>
                   <Link href="/random-shabad">
-                    <a>Hukamnama</a>
+                    <a>Random Shabad</a>
                   </Link>
                 </li>
                 <li>
