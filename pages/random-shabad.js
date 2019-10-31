@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import fetch from 'isomorphic-unfetch';
 
 const tempHtml = {
   __html: `
@@ -622,12 +623,18 @@ const tempHtml = {
   `
 };
 
-const RandomShabad = () => {
+const RandomShabad = json => {
   return (
     <Layout>
       <div dangerouslySetInnerHTML={tempHtml}></div>
     </Layout>
   );
+};
+
+RandomShabad.getInitialProps = async ({ req }) => {
+  const res = await fetch('https://api.banidb.com/v2/shabads/5278');
+  const json = await res.json();
+  return json;
 };
 
 export default RandomShabad;

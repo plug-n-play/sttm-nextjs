@@ -269,7 +269,9 @@ const Header = props => {
                   </Link>
                 </li>
                 <li>
-                  <a href="/random-shabad">Random Shabad</a>
+                  <Link href="/random-shabad">
+                    <a>Hukamnama</a>
+                  </Link>
                 </li>
                 <li>
                   <a href="/sundar-gutka">Sundar Gutka</a>
