@@ -1,6 +1,8 @@
-import React from 'react';
+import { useState, useEffect } from 'react'
 import Layout from '../components/Layout';
 import fetch from 'isomorphic-unfetch';
+import ShabadControllers from '../components/ShabadControllers'
+import { useGlobalState, useDispatchCount } from '../components/AppContext'
 
 const BreadCrumb = ({ dateObj }) => {
   const months = [
@@ -30,107 +32,6 @@ const BreadCrumb = ({ dateObj }) => {
     </h4>
   );
 };
-
-const ShabadControllers = () => (
-  <>
-    <div id="shabad-controllers">
-      <a className="display-options-toggle shabad-controller-toggle active">
-        <svg width="1em" height="1em" viewBox="0 0 640 512">
-          <path d="M592 0H48C21.5 0 0 21.5 0 48v320c0 26.5 21.5 48 48 48h245.1v32h-160c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32s-14.3-32-32-32h-160v-32H592c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm-16 352H64V64h512v288z"></path>
-        </svg>
-        <span className="display-options-label">Display</span>
-      </a>
-      <a className="font-options-toggle shabad-controller-toggle active">
-        <svg width="1em" height="1em" viewBox="0 0 576 512">
-          <path d="M576 80v40c0 6.6-5.4 12-12 12H160v8c0 13.3-10.7 24-24 24h-16c-13.3 0-24-10.7-24-24v-8H12c-6.6 0-12-5.4-12-12V80c0-6.6 5.4-12 12-12h84v-8c0-13.3 10.7-24 24-24h16c13.3 0 24 10.7 24 24v8h404c6.6 0 12 5.4 12 12zm-12 148h-84v-8c0-13.3-10.7-24-24-24h-16c-13.3 0-24 10.7-24 24v8H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h404v8c0 13.3 10.7 24 24 24h16c13.3 0 24-10.7 24-24v-8h84c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12zm0 160H288v-8c0-13.3-10.7-24-24-24h-16c-13.3 0-24 10.7-24 24v8H12c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h212v8c0 13.3 10.7 24 24 24h16c13.3 0 24-10.7 24-24v-8h276c6.6 0 12-5.4 12-12v-40c0-6.6-5.4-12-12-12z"></path>
-        </svg>
-        <span className="display-options-label">Font</span>
-      </a>
-      <a className="shabad-controller-toggle active">
-        <span className="custom-fa">ੳਅ</span>
-        <span className="display-options-label">Larivaar</span>
-      </a>
-      <a className="shabad-controller-toggle active">
-        <span className="custom-fa custom-fa-assist">ੳ</span>
-        <span className="display-options-label">Assist</span>
-      </a>
-    </div>
-
-    <div className="display-options">
-      <div className="display-option-type">
-        <div className="display-option-header">Transliteration</div>
-        <div className="display-option-content">
-          <a className="display-option-toggle active">english</a>
-        </div>
-      </div>
-      <div className="display-option-type">
-        <div className="display-option-header">Translation</div>
-        <div className="display-option-content">
-          <a className="display-option-toggle ">punjabi</a>
-          <a className="display-option-toggle active">english</a>
-          <a className="display-option-toggle ">spanish</a>
-        </div>
-      </div>
-      <div className="display-option-type">
-        <div className="display-option-header">Split View</div>
-        <div className="display-option-content">
-          <a className="display-option-toggle ">Enable</a>
-        </div>
-      </div>
-      <div className="display-option-type">
-        <div className="display-option-header">Dark Mode</div>
-        <div className="display-option-content">
-          <a className="display-option-toggle ">Enable</a>
-        </div>
-      </div>
-      <div className="display-option-type">
-        <div className="display-option-header">Center-Align</div>
-        <div className="display-option-content">
-          <a
-            className="display-option-toggle
-                           active"
-          >
-            Disable
-          </a>
-        </div>
-      </div>
-      <div className="display-option-type">
-        <div className="display-option-header">Reset Display</div>
-        <div className="display-option-content">
-          <a className="display-option-toggle">Reset</a>
-        </div>
-      </div>
-    </div>
-
-    <div className="font-options">
-      <div className="font-option-type">
-        <div className="font-option-header">Font</div>
-        <select>
-          <option value="anmol_lipi">Anmol Lipi</option>
-          <option value="anmol_bold">Anmol Lipi Bold</option>
-          <option value="notosans">Noto Sans</option>
-          <option value="notosans_bold">Noto Sans Bold</option>
-          <option value="gurmukhi_normal">Gurbani Akhar</option>
-          <option value="gurmukhi_heavy">Gurbani Akhar Heavy</option>
-          <option value="gurmukhi_thick">Gurbani Akhar Thick</option>
-          <option value="unicode_font">Unicode</option>
-        </select>
-      </div>
-      <div className="font-option-type">
-        <div className="font-option-header">Font Size</div>
-        <small className="gurbani-font">A</small>
-        <input type="range" min="5" max="50" value="20" />
-        <big className="gurbani-font">A</big>
-      </div>
-      <div className="display-option-type">
-        <div className="font-option-header">Reset Font</div>
-        <div className="display-option-content">
-          <a className="display-option-toggle">Reset</a>
-        </div>
-      </div>
-    </div>
-  </>
-);
 
 const ShareMenu = () => (
   <div id="share-menu">
@@ -166,8 +67,8 @@ const ShareMenu = () => (
             className="short-url-input"
             type="text"
             readOnly=""
-            //  TODO:
-            // value="http://sttm.co/h"
+          //  TODO:
+          // value="http://sttm.co/h"
           />
           <svg
             width="1em"
@@ -209,7 +110,9 @@ const MetaData = ({ info }) => {
             info.raag.english &&
             info.raag.english !== 'null' &&
             info.raag.english}
+          {` `}
           {info.writer && info.writer.english}
+          {` `}
           {info.source.english} - {/* TODO: Add Link */}
           <a
             href={`/ang?ang=${info.source.pageNo}&source=${info.source.sourceId}`}
@@ -268,8 +171,8 @@ const LarivaarAssist = ({ verse, fontIdentifierClass }) => {
             {i}
           </span>
         ) : (
-          <span key={index}>{i}</span>
-        );
+            <span key={index}>{i}</span>
+          );
       })}
       <div className="alter-color"></div>
       <style jsx>{`
@@ -281,29 +184,10 @@ const LarivaarAssist = ({ verse, fontIdentifierClass }) => {
   );
 };
 
-// TODO: Move this
-const defaultSettings = {
-  showLarivaar: true,
-  showLarivaarAssist: true,
-  showUnicode: true,
-  centerAlign: true,
-  darkMode: false,
-  splitView: true,
-  selectedFontFamily: 'gurmukhi_normal',
-  selectedFontSize: '2em',
-  showTransliteration: true,
-  translation: {
-    showPunjabi: false,
-    showEnglish: false,
-    showSpansish: false
-  }
-};
-
 const Verse = ({ verseDetails }) => {
-  const showUnicode = defaultSettings.showUnicode;
-  const showLarivaar = defaultSettings.showLarivaar;
-  const showLarivaarAssist = defaultSettings.showLarivaarAssist;
-  const selectedFontSize = defaultSettings.selectedFontSize;
+
+  const { isLarivaarEnabled, isLarivaarAssistEnabled, isUnicodeActive, selectedFontFamily, selectedFontSize } = useGlobalState()
+
   return (
     <div className="gurmukhi gurbani-display gurbani-font">
       {/**
@@ -317,30 +201,30 @@ const Verse = ({ verseDetails }) => {
        */}
 
       {// #1
-      showLarivaar && showUnicode && showLarivaarAssist && (
-        <LarivaarAssist
-          verse={verseDetails.verse.unicode}
-          fontIdentifierClass="unicode"
-        />
-      )}
+        isLarivaarEnabled && isUnicodeActive && isLarivaarAssistEnabled && (
+          <LarivaarAssist
+            verse={verseDetails.verse.unicode}
+            fontIdentifierClass="unicode"
+          />
+        )}
 
       {// #2
-      showLarivaar && showUnicode && !showLarivaarAssist && (
-        <div className="larivaar unicode">{verseDetails.larivaar.unicode}</div>
-      )}
+        isLarivaarEnabled && isUnicodeActive && !isLarivaarAssistEnabled && (
+          <div className="larivaar unicode">{verseDetails.larivaar.unicode}</div>
+        )}
 
       {// #3
-      showLarivaar && !showUnicode && !showLarivaarAssist && (
-        <div class="larivaar gurlipi">{verseDetails.larivaar.gurmukhi}</div>
-      )}
+        isLarivaarEnabled && !isUnicodeActive && !isLarivaarAssistEnabled && (
+          <div class="larivaar gurlipi">{verseDetails.larivaar.gurmukhi}</div>
+        )}
 
       {// #4
-      showLarivaar && !showUnicode && showLarivaarAssist && (
-        <LarivaarAssist
-          verse={verseDetails.verse.gurmukhi}
-          fontIdentifierClass="unicode"
-        />
-      )}
+        isLarivaarEnabled && !isUnicodeActive && isLarivaarAssistEnabled && (
+          <LarivaarAssist
+            verse={verseDetails.verse.gurmukhi}
+            fontIdentifierClass="unicode"
+          />
+        )}
 
       {/*
        * Non-Larivaar
@@ -349,13 +233,13 @@ const Verse = ({ verseDetails }) => {
        */}
 
       {// #5
-      !showLarivaar && showUnicode && (
-        <div className="unicode">{verseDetails.verse.unicode}</div>
-      )}
+        !isLarivaarEnabled && isUnicodeActive && (
+          <div className="unicode">{verseDetails.verse.unicode}</div>
+        )}
       {// #6
-      !showLarivaar && !showUnicode && (
-        <div className="gurmukhi gurlipi">{verseDetails.verse.gurmukhi}</div>
-      )}
+        !isLarivaarEnabled && !isUnicodeActive && (
+          <div className="gurmukhi gurlipi">{verseDetails.verse.gurmukhi}</div>
+        )}
 
       <style jsx>{`
         div {
@@ -363,42 +247,64 @@ const Verse = ({ verseDetails }) => {
           font-size: ${selectedFontSize};
         }
         .gurmukhi {
-          font-family: ${defaultSettings.selectedFontFamily};
+          font-family: ${selectedFontFamily};
         }
       `}</style>
     </div>
   );
 };
 
-const VerseInfo = ({ verseDetails }) => (
-  <>
-    <div className="transliteration english">
-      {verseDetails.transliteration.english}
-    </div>
-    <blockquote className="translation english">
-      {verseDetails.translation.en.bdb}
-    </blockquote>
-    <blockquote className="translation punjabi gurbani-font">
-      <div className="unicode"></div>
-    </blockquote>
-    <blockquote className="translation spanish">
-      {verseDetails.translation.es.sn}
-    </blockquote>
-    <blockquote className="translation punjabi gurbani-font">
-      <div className="unicode">{verseDetails.translation.pu.ss.unicode}</div>
-    </blockquote>
-  </>
-);
+const VerseInfo = ({ verseDetails }) => {
+  const { isHindiTransliterationActive, isEngTransliterationActive, isShahmukhiTransliterationActive, isPunjabiTranslationActive, isEngTranslationActive, isSpanishTranslationActive, selectedFontFamily } = useGlobalState()
+
+  const isUnicode = selectedFontFamily.indexOf("unicode") > -1 ? true : false
+
+  return (
+    <>
+      {isEngTransliterationActive && <div className="transliteration english">
+        {verseDetails.transliteration.english}
+      </div>}
+
+      {isHindiTransliterationActive && <div className="transliteration english">
+        {verseDetails.transliteration.hindi}
+      </div>}
+
+      {isShahmukhiTransliterationActive && <div className="transliteration english">
+        {verseDetails.transliteration.ur}
+      </div>}
+
+      {isPunjabiTranslationActive && <blockquote className="translation punjabi gurbani-font">
+        {isUnicode ?
+          <div className="unicode">{verseDetails.translation.pu.ss.unicode}</div> : <div className="gurlipi">{verseDetails.translation.pu.ss.gurmukhi}</div>}
+      </blockquote>}
+
+      {isEngTranslationActive && <blockquote className="translation english">
+        {verseDetails.translation.en.bdb}
+      </blockquote>}
+
+      {isSpanishTranslationActive && <blockquote className="translation spanish">
+        {verseDetails.translation.es.sn}
+      </blockquote>}
+
+
+      {isUnicode ? <blockquote className="translation punjabi gurbani-font">
+        <div className="unicode" > {verseDetails.translation.pu.ss.unicode}</div>
+      </blockquote > : ''}
+    </>
+  )
+};
 
 const Shabad = ({ verses }) => {
+  const { loading, isDarkModeActiveActive, isCenterAligned, isLarivaarEnabled, isLarivaarAssistEnabled, isSplitViewEnabledEnabled, isUnicodeActive, selectedFontFamily, selectedFontSize } = useGlobalState()
+
   const i = verses[0];
 
   return (
     <>
       {verses.map(i => (
-        <div id="shabad" className="shabad display" key={i.verseId}>
+        <div id="shabad" className={`shabad display ${isCenterAligned ? 'center-align' : ''}`} key={i.verseId}>
           <div className="shabad-container">
-            <div className="shabad-content  center-align">
+            <div className="shabad-content">
               <div className="mixed-view-baani">
                 <div id="line-27559" className="line">
                   <Verse verseDetails={i} />
@@ -415,33 +321,52 @@ const Shabad = ({ verses }) => {
   );
 };
 
-const Hukamnama = json => (
-  <Layout>
-    <div className="row" id="content-root">
-      <BreadCrumb dateObj={json.date.gregorian} />
-      {/* <div>Next stars: {json.stargazers_count}</div> */}
-      <div id="controls-wrapper" className="no-select ">
-        <ShareMenu />
-        <ShabadControllers />
-      </div>
-      <MetaData info={json.shabads[0].shabadInfo} />
-      <Shabad verses={json.shabads[0].verses} />
-      <div id="progressbar-root">
-        <div
-          className="progressbar"
-          // TODO: fix following
-          // styleName="transform: scaleX(0) translateZ(0px); transform-origin: 0px 0px;"
-        ></div>
-      </div>
-    </div>
-  </Layout>
-);
-
-Hukamnama.getInitialProps = async ({ req }) => {
+const getHukamnama = async ({ req }) => {
   const res = await fetch('https://api.banidb.com/v2/hukamnamas/today');
   const json = await res.json();
-  console.log(json);
   return json;
 };
+
+const Hukamnama = () => {
+  const [shabad, setShabad] = useState(null)
+  const { loading } = useGlobalState()
+  const dispatch = useDispatchCount()
+
+  useEffect(() => {
+    fetch('https://api.banidb.com/v2/hukamnamas/today')
+      .then(res => res.json())
+      .then(res => {
+        setShabad(res)
+        dispatch({ type: 'LOADED' })
+      })
+  }, [])
+
+  return (
+    <Layout>
+      {
+        loading ?
+          <div className="row center-align" id="content-root">
+            Loading...
+          </div>
+          : <div className="row" id="content-root">
+            <BreadCrumb dateObj={shabad.date.gregorian} />
+            <div id="controls-wrapper" className="no-select ">
+              <ShareMenu />
+              <ShabadControllers />
+            </div>
+            <MetaData info={shabad.shabads[0].shabadInfo} />
+            <Shabad verses={shabad.shabads[0].verses} />
+            <div id="progressbar-root">
+              <div
+                className="progressbar"
+              // TODO: fix following
+              // styleName="transform: scaleX(0) translateZ(0px); transform-origin: 0px 0px;"
+              ></div>
+            </div>
+          </div>
+      }
+    </Layout>
+  );
+}
 
 export default Hukamnama;
